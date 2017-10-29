@@ -10,6 +10,8 @@ set os Debian
 clear debian_version
 clear older_release
 set debian_mirror deb.debian.org
+set preseedurl http://gw.realraum.at/tftpboot/preseed.cfg
+
 menu ${os} - ${arch_a} - Image Sig Checks: [${img_sigs_enabled}]
 item --gap Latest Releases
 item stretch ${space} ${os} 9.0 (stretch)
@@ -52,11 +54,11 @@ echo ${cls}
 goto deb_${type}
 
 :deb_rescue
-set install_params rescue/enable=true
+set install_params rescue/enable=true preseed/url=${preseedurl}
 goto deb_text
 
 :deb_expert
-set install_params priority=low
+set install_params priority=low preseed/url=${preseedurl}
 goto deb_text
 
 :deb_preseed
@@ -70,7 +72,7 @@ goto deb_boot
 
 :deb_graphical
 set dir ${dir}gtk/${menu}-installer/${arch_a}
-set install_params vga=788
+set install_params vga=788 preseed/url=${preseedurl}
 goto deb_boot
 
 :deb_boot
