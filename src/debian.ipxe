@@ -9,7 +9,13 @@ goto ${menu}
 set os Debian
 clear debian_version
 clear older_release
+
+# Mirror used to fetch the Debian installer from
+# Not yet debian.ffgraz.net as it doesn't provide d-i/main
 set debian_mirror deb.debian.org
+
+# Local preseed file
+# Sets some l10n options, and selects debian.ffgraz.net as mirror
 set preseedurl http://gw.realraum.at/tftpboot/preseed.cfg
 
 menu ${os} - ${arch_a} - Image Sig Checks: [${img_sigs_enabled}]
